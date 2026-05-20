@@ -44,6 +44,13 @@ export class CleanupJob {
 
 데코레이터가 새 RequestContext 를 열고 메서드 종료 시 닫는다. JPA 에서 `@Async` 메서드에 `@Transactional` 다는 것과 비슷한 위치.
 
+생성자에 `MikroORM` 대신 `EntityManager` 만 들고 있다면 *컨텍스트 제공자 콜백*을 전달:
+
+```ts
+@CreateRequestContext((self: MyService) => self.em)
+async doSomething() { ... }
+```
+
 이전 이름은 `@UseRequestContext()` 였다 (MikroORM 5). v6 부터는 `@CreateRequestContext()`. 오래된 블로그 글 보면 이전 이름이 등장.
 
 ## 직접 호출 형태

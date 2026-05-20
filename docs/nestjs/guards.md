@@ -51,6 +51,8 @@ export class RolesGuard implements CanActivate {
 
 `getAllAndOverride([handler, class])` → 메서드 데코레이터가 클래스 데코레이터를 **덮어쓴다**. Spring 의 `AnnotationUtils.findAnnotation()` 과 비슷.
 
+> 참고: 최근 NestJS 는 타입 안전한 `Reflector.createDecorator()` API 도 제공한다. `SetMetadata()` 헬퍼 대신 `Reflector.createDecorator<string[]>()` 로 데코레이터를 만들면 `reflector.get(MyDecorator, handler)` 처럼 타입 추론이 되는 식. 동작은 같고, 새 코드에서는 쓰기 더 편하다. 출처: https://docs.nestjs.com/fundamentals/execution-context#reflection-and-metadata
+
 ## 적용 범위
 
 ```ts
