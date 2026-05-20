@@ -12,6 +12,7 @@
     "outDir": "./dist",
     "incremental": true,
     "skipLibCheck": true,
+    "types": ["jest", "node"],
     "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
