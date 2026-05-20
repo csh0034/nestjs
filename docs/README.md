@@ -6,6 +6,7 @@ Spring Boot Kotlin JPA 경험자가 NestJS + MikroORM 으로 옮길 때 알아�
 
 | 문서 | 다루는 것 | Spring 대응 |
 | --- | --- | --- |
+| [philosophy.md](./nestjs/philosophy.md) | **전체 아키텍처 개요** — 정의, 구성 요소, Request Lifecycle, Platform/Transport Agnostic | — |
 | [modules.md](./nestjs/modules.md) | `@Module`, imports/providers/exports/controllers | Spring 의 컴포넌트 스캔/`@Configuration` |
 | [dependency-injection.md](./nestjs/dependency-injection.md) | `@Injectable`, custom providers, Symbol 토큰, Scope | Bean + 생성자 주입 + Qualifier + `@Scope` |
 | [controllers.md](./nestjs/controllers.md) | `@Controller`, 라우팅, DTO 매핑 | `@RestController` |
