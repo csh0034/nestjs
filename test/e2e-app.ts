@@ -29,7 +29,7 @@ export async function createE2EApp(): Promise<{ app: INestApplication; orm: Mikr
   await app.init();
 
   const orm = app.get(MikroORM);
-  await orm.getSchemaGenerator().refreshDatabase();
+  await orm.schema.refreshDatabase();
 
   return { app, orm };
 }
