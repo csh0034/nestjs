@@ -115,7 +115,7 @@ class GetUserUseCase {
 constructor(@Inject(USER_REPOSITORY) private readonly users: UserRepository) {}
 ```
 
-이 프로젝트가 Symbol 토큰을 강제하는 이유. 자세히는 [[../nestjs/dependency-injection]].
+이 프로젝트가 Symbol 토큰을 강제하는 이유. 자세히는 [[../nestjs/03-dependency-injection]].
 
 ---
 
@@ -168,7 +168,7 @@ function Log(): MethodDecorator {
 }
 ```
 
-Spring AOP `@Around` 와 같은 패턴. 그러나 NestJS 에서는 보통 `Interceptor` 로 처리하는 것이 더 자연스럽다 — DI 와 RxJS 를 활용할 수 있어서. 자세히는 [[../nestjs/interceptors]].
+Spring AOP `@Around` 와 같은 패턴. 그러나 NestJS 에서는 보통 `Interceptor` 로 처리하는 것이 더 자연스럽다 — DI 와 RxJS 를 활용할 수 있어서. 자세히는 [[../nestjs/08-interceptors]].
 
 ### 3. class-validator (선언적 검증)
 
@@ -179,7 +179,7 @@ class CreateUserDto {
 }
 ```
 
-`ValidationPipe` 가 `class-validator` 의 메타데이터를 읽어서 검증. Bean Validation 과 거의 동일한 사용감. 자세히는 [[../nestjs/pipes]].
+`ValidationPipe` 가 `class-validator` 의 메타데이터를 읽어서 검증. Bean Validation 과 거의 동일한 사용감. 자세히는 [[../nestjs/05-pipes]].
 
 ---
 

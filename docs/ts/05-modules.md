@@ -1,6 +1,6 @@
 # Modules (ESM / CommonJS)
 
-JS/TS 의 **모듈** 은 NestJS 의 `@Module` 과 *다른 것*이다. 여기서는 **언어 수준 import/export** 를 다룬다. NestJS 모듈은 [[../nestjs/modules]] 참고.
+JS/TS 의 **모듈** 은 NestJS 의 `@Module` 과 *다른 것*이다. 여기서는 **언어 수준 import/export** 를 다룬다. NestJS 모듈은 [[../nestjs/02-modules]] 참고.
 
 ## 두 가지 모듈 시스템
 

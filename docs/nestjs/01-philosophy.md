@@ -151,7 +151,7 @@ NestJS 의 동작 대부분이 *데코레이터로 부착된 메타데이터*에
 
 ## 함께 보기
 
-- [modules.md](./modules.md)
-- [dependency-injection.md](./dependency-injection.md)
-- [controllers.md](./controllers.md)
-- [pipes.md](./pipes.md) · [guards.md](./guards.md) · [interceptors.md](./interceptors.md) · [exception-filters.md](./exception-filters.md)
+- [02-modules.md](./02-modules.md)
+- [03-dependency-injection.md](./03-dependency-injection.md)
+- [04-controllers.md](./04-controllers.md)
+- [05-pipes.md](./05-pipes.md) · [06-exception-filters.md](./06-exception-filters.md) · [07-guards.md](./07-guards.md) · [08-interceptors.md](./08-interceptors.md)

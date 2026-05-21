@@ -142,7 +142,7 @@ NestJS 의 EventEmitter 핸들러가 async 인 경우 floating 처리됨 — 비
 | 취소 | 없음 | `unsubscribe()` |
 | 합성 | `then` / `Promise.all` | 풍부한 operator (`map`, `tap`, `switchMap`...) |
 
-NestJS Interceptor 는 RxJS Observable 위에서 동작 (`tap()` 으로 응답 후 처리). 컨트롤러/UseCase 는 Promise 로 충분. 자세히는 [[../nestjs/interceptors]].
+NestJS Interceptor 는 RxJS Observable 위에서 동작 (`tap()` 으로 응답 후 처리). 컨트롤러/UseCase 는 Promise 로 충분. 자세히는 [[../nestjs/08-interceptors]].
 
 ---
 
