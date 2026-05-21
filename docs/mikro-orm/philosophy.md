@@ -137,7 +137,7 @@ export class User {
 - `MetadataStorage` 가 부팅 시 모든 엔티티를 스캔/검증
 - 런타임에 `em.find(User, ...)` 호출 시 그 메타데이터로 SQL 생성
 
-TS 데코레이터 일반론은 [[../ts/decorators]] 참고.
+TS 데코레이터 일반론은 [[../ts/07-decorators]] 참고.
 
 출처: https://mikro-orm.io/docs/defining-entities, https://mikro-orm.io/docs/metadata-providers
 

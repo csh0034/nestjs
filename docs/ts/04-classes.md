@@ -141,7 +141,7 @@ interface Walker { walk(): void }
 x instanceof Walker;   // ❌ 컴파일 에러 — interface 는 런타임에 없음
 ```
 
-interface 로 좁히고 싶다면 [[type-system]] 의 *타입 가드 함수* 참고.
+interface 로 좁히고 싶다면 [[02-type-system]] 의 *타입 가드 함수* 참고.
 
 ---
 

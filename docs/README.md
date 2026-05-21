@@ -4,16 +4,18 @@ Spring Boot Kotlin JPA 경험자가 NestJS + MikroORM 으로 옮길 때 알아�
 
 ## TypeScript
 
+번호 순서대로 읽기를 권장.
+
 | 문서 | 다루는 것 | Kotlin/Java 대응 |
 | --- | --- | --- |
-| [philosophy.md](./ts/philosophy.md) | **전체 개요** — superset, type erasure, structural typing, 컴파일 모델 | — |
-| [type-system.md](./ts/type-system.md) | `interface` vs `type`, union, generic, utility type, narrowing | nominal typing + sealed class + smart cast |
-| [null-and-undefined.md](./ts/null-and-undefined.md) | `null`/`undefined`, optional `?:`, `?.`/`??`, `!`, `strictNullChecks` | Kotlin nullable + `?.`/`?:`/`!!` |
-| [classes.md](./ts/classes.md) | class, parameter property, abstract, accessor, `this` 함정 | Kotlin class + 생성자 프로퍼티 |
-| [decorators.md](./ts/decorators.md) | legacy decorator + `reflect-metadata`, NestJS/MikroORM 동작 원리 | 어노테이션 + AOP |
-| [modules.md](./ts/modules.md) | ESM/CJS, `import`/`export`, paths alias, 순환 import | (직접 대응 없음) |
-| [async-and-promises.md](./ts/async-and-promises.md) | `Promise`, `async`/`await`, `Promise.all`/`allSettled`, floating promise | Kotlin Coroutine, `Deferred` |
-| [tsconfig.md](./ts/tsconfig.md) | 이 프로젝트의 `tsconfig.json` 옵션 해설 | — |
+| [01-philosophy.md](./ts/01-philosophy.md) | **전체 개요** — superset, type erasure, structural typing, 컴파일 모델 | — |
+| [02-type-system.md](./ts/02-type-system.md) | `interface` vs `type`, union, generic, utility type, narrowing | nominal typing + sealed class + smart cast |
+| [03-null-and-undefined.md](./ts/03-null-and-undefined.md) | `null`/`undefined`, optional `?:`, `?.`/`??`, `!`, `strictNullChecks` | Kotlin nullable + `?.`/`?:`/`!!` |
+| [04-classes.md](./ts/04-classes.md) | class, parameter property, abstract, accessor, `this` 함정 | Kotlin class + 생성자 프로퍼티 |
+| [05-modules.md](./ts/05-modules.md) | ESM/CJS, `import`/`export`, paths alias, 순환 import | (직접 대응 없음) |
+| [06-async-and-promises.md](./ts/06-async-and-promises.md) | `Promise`, `async`/`await`, `Promise.all`/`allSettled`, floating promise | Kotlin Coroutine, `Deferred` |
+| [07-decorators.md](./ts/07-decorators.md) | legacy decorator + `reflect-metadata`, NestJS/MikroORM 동작 원리 | 어노테이션 + AOP |
+| [08-tsconfig.md](./ts/08-tsconfig.md) | 이 프로젝트의 `tsconfig.json` 옵션 해설 (사전 용도) | — |
 
 ## NestJS
 

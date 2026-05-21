@@ -50,7 +50,7 @@ function get(token: any) { return container.get(token); }
 get(UserRepository);
 ```
 
-NestJS 가 인터페이스 주입에 **Symbol 토큰**을 강제하는 이유다 (`USER_REPOSITORY = Symbol(...)`). 자세히는 [[decorators]] 참고.
+NestJS 가 인터페이스 주입에 **Symbol 토큰**을 강제하는 이유다 (`USER_REPOSITORY = Symbol(...)`). 자세히는 [[07-decorators]] 참고.
 
 ---
 
@@ -69,7 +69,7 @@ NestJS 가 인터페이스 주입에 **Symbol 토큰**을 강제하는 이유다
 - **`.d.ts`** — 타입 선언 파일. JS 라이브러리(`@types/node` 등)에 타입을 입혀줌
 - **`.js`** — 실제 실행되는 산출물
 
-이 프로젝트의 `tsconfig.json` 옵션 해설은 [[tsconfig]] 에서 다룬다.
+이 프로젝트의 `tsconfig.json` 옵션 해설은 [[08-tsconfig]] 에서 다룬다.
 
 ---
 
@@ -89,7 +89,7 @@ function isUser(x: unknown): x is User {
 3. `typeof` / `in` / `Array.isArray` 같은 JS 기본 연산
 4. `zod`/`class-validator` 같은 **런타임 스키마 검증 라이브러리**
 
-자세한 좁히기 규칙은 [[type-system]] 의 "Narrowing" 참고.
+자세한 좁히기 규칙은 [[02-type-system]] 의 "Narrowing" 참고.
 
 ---
 
@@ -123,13 +123,13 @@ let v: unknown = ...; // 타입 알 수 없음. 사용 전 좁히기 강제
 
 ## 함께 보기
 
-- [type-system.md](./type-system.md) — interface/type/generic/utility/narrowing
-- [null-and-undefined.md](./null-and-undefined.md) — null 처리, optional, non-null assertion
-- [classes.md](./classes.md) — class, parameter property, abstract
-- [decorators.md](./decorators.md) — decorator + reflect-metadata
-- [modules.md](./modules.md) — ES module, import/export
-- [async-and-promises.md](./async-and-promises.md) — Promise, async/await
-- [tsconfig.md](./tsconfig.md) — 이 프로젝트의 컴파일 옵션 해설
+- [02-type-system.md](./02-type-system.md) — interface/type/generic/utility/narrowing
+- [03-null-and-undefined.md](./03-null-and-undefined.md) — null 처리, optional, non-null assertion
+- [04-classes.md](./04-classes.md) — class, parameter property, abstract
+- [05-modules.md](./05-modules.md) — ES module, import/export
+- [06-async-and-promises.md](./06-async-and-promises.md) — Promise, async/await
+- [07-decorators.md](./07-decorators.md) — decorator + reflect-metadata
+- [08-tsconfig.md](./08-tsconfig.md) — 이 프로젝트의 컴파일 옵션 해설
 
 ## 공식 문서
 

@@ -62,7 +62,7 @@
 | `experimentalDecorators` | legacy 데코레이터 활성. **없으면 NestJS/MikroORM 동작 안 함** |
 | `emitDecoratorMetadata` | 데코레이터 붙은 클래스에 `design:type`/`design:paramtypes` 자동 주입. DI 가 동작하는 근거 |
 
-자세히는 [[decorators]] 참고.
+자세히는 [[07-decorators]] 참고.
 
 ### 엄격성 (절대 끄지 말 것)
 
@@ -114,7 +114,7 @@
 
 - **외부 라이브러리 타입이 엉성하다** → `skipLibCheck` 가 이미 켜져 있고, 정 필요하면 `// @ts-expect-error` 로 *국소* 우회. 전역으로 `strict` 끄지 말 것
 - **레거시 JS 를 점진 도입** → 파일별 `// @ts-nocheck` 또는 `allowJs` 로 한정. strict 는 살려두기
-- **MikroORM 엔티티 필드의 `!` 가 늘어난다** → 그게 정상. *definite assignment assertion* 은 ORM hydration 패턴에 따라 붙는 비용 ([[classes]] 참고)
+- **MikroORM 엔티티 필드의 `!` 가 늘어난다** → 그게 정상. *definite assignment assertion* 은 ORM hydration 패턴에 따라 붙는 비용 ([[04-classes]] 참고)
 
 `strict` 를 끄면 *런타임 버그를 컴파일러가 안 잡아주는 코드*가 되살아난다. Spring 에서 `@NonNull` 검증을 끄는 것과 같은 수준의 결정.
 
