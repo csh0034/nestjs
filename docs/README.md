@@ -34,15 +34,17 @@ Spring Boot Kotlin JPA 경험자가 NestJS + MikroORM 으로 옮길 때 알아�
 
 ## MikroORM
 
+번호 순서대로 읽기를 권장.
+
 | 문서 | 다루는 것 | JPA 대응 |
 | --- | --- | --- |
-| [philosophy.md](./mikro-orm/philosophy.md) | **전체 아키텍처 개요** — Data Mapper, Unit of Work, Identity Map, Driver, NestJS 부팅 시퀀스 | Hibernate 의 정신적 모델 |
-| [entities.md](./mikro-orm/entities.md) | `@Entity`, `@PrimaryKey`, `@Property`, `@Enum` | JPA `@Entity` |
-| [entity-manager.md](./mikro-orm/entity-manager.md) | `EntityManager`, Unit of Work, Identity Map, flush | JPA `EntityManager`, 1차 캐시, dirty checking |
-| [repositories.md](./mikro-orm/repositories.md) | `EntityRepository`, 커스텀 구현 | Spring Data `Repository` |
-| [relations.md](./mikro-orm/relations.md) | `@OneToMany`, `@ManyToOne`, `Collection`, cascade | JPA 관계 매핑 |
-| [transactions.md](./mikro-orm/transactions.md) | `em.transactional()`, 자동 flush, 롤백 | `@Transactional` |
-| [request-context.md](./mikro-orm/request-context.md) | 요청별 EM 격리, `@nestjs/mikro-orm` 자동화 | `OpenEntityManagerInViewInterceptor` |
+| [01-philosophy.md](./mikro-orm/01-philosophy.md) | **전체 아키텍처 개요** — Data Mapper, Unit of Work, Identity Map, Driver, NestJS 부팅 시퀀스 | Hibernate 의 정신적 모델 |
+| [02-entities.md](./mikro-orm/02-entities.md) | `@Entity`, `@PrimaryKey`, `@Property`, `@Enum` | JPA `@Entity` |
+| [03-entity-manager.md](./mikro-orm/03-entity-manager.md) | `EntityManager`, Unit of Work, Identity Map, flush | JPA `EntityManager`, 1차 캐시, dirty checking |
+| [04-repositories.md](./mikro-orm/04-repositories.md) | `EntityRepository`, 커스텀 구현 | Spring Data `Repository` |
+| [05-relations.md](./mikro-orm/05-relations.md) | `@OneToMany`, `@ManyToOne`, `Collection`, cascade | JPA 관계 매핑 |
+| [06-transactions.md](./mikro-orm/06-transactions.md) | `em.transactional()`, 자동 flush, 롤백 | `@Transactional` |
+| [07-request-context.md](./mikro-orm/07-request-context.md) | 요청별 EM 격리, `@nestjs/mikro-orm` 자동화 | `OpenEntityManagerInViewInterceptor` |
 
 ## 공식 문서 (1차 출처)
 

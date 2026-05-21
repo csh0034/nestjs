@@ -79,7 +79,7 @@ em.flush() (또는 em.transactional() 종료)
 
 JPA `EntityManager` 의 1차 캐시 + dirty checking + `flush()` 사이클이 그대로 옮겨왔다고 보면 된다.
 
-자세히는 [entity-manager.md](./entity-manager.md) 참고.
+자세히는 [03-entity-manager.md](./03-entity-manager.md) 참고.
 
 출처: https://mikro-orm.io/docs/unit-of-work, https://mikro-orm.io/docs/identity-map
 
@@ -96,7 +96,7 @@ JPA + Spring 에서는 *컨테이너가 알아서* 요청별 EM 을 묶지만, M
 
 이 설계를 안 지키면 *전역 EM 공유* → 요청 간 데이터 누수 + 메모리 증가. `allowGlobalContext: false` (이 프로젝트 기본) 로 잘못 사용 자체를 막을 수 있다.
 
-자세히는 [request-context.md](./request-context.md) 참고.
+자세히는 [07-request-context.md](./07-request-context.md) 참고.
 
 출처: https://mikro-orm.io/docs/identity-map#request-context, https://mikro-orm.io/docs/async-local-storage
 
@@ -213,18 +213,18 @@ MikroOrmModule.forRootAsync({ useFactory: ... })
 | N+1 + `fetch=EAGER`/`LAZY` | `populate` 옵션 + `eager: true`/`Collection<T>` lazy |
 | Spring Data `Repository` | `EntityRepository<T>` (메서드 자동 생성 ❌) |
 
-**가장 큰 차이**: Spring Data 의 *메서드 이름 기반 쿼리 생성*이 없다. 모든 메서드를 명시 구현해야 한다. 자세히는 [repositories.md](./repositories.md) 참고.
+**가장 큰 차이**: Spring Data 의 *메서드 이름 기반 쿼리 생성*이 없다. 모든 메서드를 명시 구현해야 한다. 자세히는 [04-repositories.md](./04-repositories.md) 참고.
 
 ---
 
 ## 함께 보기
 
-- [entities.md](./entities.md) — `@Entity`, `@PrimaryKey`, hydration 함정
-- [entity-manager.md](./entity-manager.md) — EM, IdentityMap, UoW 상세
-- [repositories.md](./repositories.md) — EntityRepository, 포트/어댑터 패턴
-- [relations.md](./relations.md) — `@OneToMany`, `Collection<T>`, populate
-- [transactions.md](./transactions.md) — `em.transactional()`, `@Transactional()`
-- [request-context.md](./request-context.md) — 요청 격리, `@CreateRequestContext`
+- [02-entities.md](./02-entities.md) — `@Entity`, `@PrimaryKey`, hydration 함정
+- [03-entity-manager.md](./03-entity-manager.md) — EM, IdentityMap, UoW 상세
+- [04-repositories.md](./04-repositories.md) — EntityRepository, 포트/어댑터 패턴
+- [05-relations.md](./05-relations.md) — `@OneToMany`, `Collection<T>`, populate
+- [06-transactions.md](./06-transactions.md) — `em.transactional()`, `@Transactional()`
+- [07-request-context.md](./07-request-context.md) — 요청 격리, `@CreateRequestContext`
 
 ## 공식 문서
 

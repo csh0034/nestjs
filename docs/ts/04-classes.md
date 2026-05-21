@@ -170,7 +170,7 @@ class Aggregate {
 }
 ```
 
-이 프로젝트의 `AggregateRoot` 가 정확히 이 패턴이다. 자세히는 [[../mikro-orm/entities]] 참고.
+이 프로젝트의 `AggregateRoot` 가 정확히 이 패턴이다. 자세히는 [[../mikro-orm/02-entities]] 참고.
 
 ---
 

@@ -44,7 +44,7 @@ flush 는 **세 가지를 트리거**한다:
 
 flush 가 호출되지 않으면 메모리에만 변경이 있고 DB 에는 반영 안 된다. 이게 *bug* 의 흔한 원인.
 
-→ 그래서 **요청별 EM** + **자동 flush** 패턴이 필요. `request-context.md` 참고.
+→ 그래서 **요청별 EM** + **자동 flush** 패턴이 필요. `07-request-context.md` 참고.
 
 ## Identity Map
 
@@ -72,7 +72,7 @@ const order = await em.findOne(Order, { id }, { populate: ['items'] });
 
 ## 명시적 트랜잭션과 EM
 
-`em.transactional(async () => { ... })` 안에서는 **트랜잭션 종료 시 자동 flush + commit**. 예외 시 rollback. → `transactions.md` 참고.
+`em.transactional(async () => { ... })` 안에서는 **트랜잭션 종료 시 자동 flush + commit**. 예외 시 rollback. → `06-transactions.md` 참고.
 
 ## EntityManager 의 fork
 
