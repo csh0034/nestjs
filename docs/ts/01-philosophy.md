@@ -21,7 +21,7 @@ TypeScript 공식 문서(typescriptlang.org)에 명시된 정의·컴파일 모�
 | 항목 | Kotlin/Java | TypeScript |
 | --- | --- | --- |
 | 타입 호환 | **이름 기반(nominal)** — `class Foo`/`class Bar` 가 같은 모양이어도 다른 타입 | **구조 기반(structural)** — 모양이 같으면 호환 |
-| 런타임 타입 | JVM 리플렉션으로 클래스 메타정보 그대로 보존 | `interface`/`type` 은 사라짐. `class` 만 남음 |
+| 런타임 타입 | JVM 리플렉션으로 클래스 메타정보 다수 보존 (단 generic 은 erasure) | `interface`/`type` 은 사라짐. `class` 만 남음 |
 | nullability | `String` vs `String?` (타입 시스템 일급 시민) | `string` vs `string \| undefined` (유니온으로 표현) |
 
 ### 구조적 타이핑 예시

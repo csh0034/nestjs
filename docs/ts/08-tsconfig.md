@@ -48,7 +48,7 @@
 | 옵션 | 값 | 의미 |
 | --- | --- | --- |
 | `module` | `commonjs` | `import` 문을 CJS `require` 로 변환. Node + NestJS 표준 |
-| `target` | `ES2022` | 출력 JS 의 문법 수준. Node 18+ 가 지원하는 최신 |
+| `target` | `ES2022` | 출력 JS 의 문법 수준. Node 16.11+ 부터 대체로 지원. 단 `target: ES2022` 부터 `useDefineForClassFields` 가 기본 `true` 로 바뀐다는 점을 같이 인지할 것 — MikroORM/데코레이터 패턴과 상호작용 함정이 있다 ([[04-classes]] 참고) |
 | `outDir` | `./dist` | 빌드 산출물 위치 |
 | `declaration` | `true` | `.d.ts` 도 생성. 라이브러리 배포할 때 의미 있음 |
 | `removeComments` | `true` | 산출물에서 주석 제거 |
@@ -66,16 +66,30 @@
 
 ### 엄격성 (절대 끄지 말 것)
 
+`strict: true` 는 strict 패밀리 **전체**를 켜는 마스터 스위치. 현재 TS 가 묶어주는 항목은 다음 9개:
+
 | 옵션 | 의미 |
 | --- | --- |
-| `strict` | 아래의 모든 strict-* 옵션 일괄 ON 의 마스터 스위치 |
-| `strictNullChecks` | `null`/`undefined` 를 별도 타입으로 추적 |
 | `noImplicitAny` | 타입 추론 실패 시 `any` 가 아니라 에러 |
+| `strictNullChecks` | `null`/`undefined` 를 별도 타입으로 추적 |
+| `strictFunctionTypes` | 함수 파라미터에 *반공변* 검사 적용 (콜백 시그니처 안전성) |
 | `strictBindCallApply` | `fn.bind/call/apply` 의 인자 타입을 검사 |
+| `strictPropertyInitialization` | 클래스 필드가 생성자에서 반드시 초기화되어야 함. MikroORM `id!: string` 의 `!` 가 이것 때문 |
+| `strictBuiltinIteratorReturn` | 내장 iterator 의 `return` 타입을 정확히 추적 (TS 5.6+) |
+| `noImplicitThis` | `this` 의 타입을 추론 못 하면 에러 |
+| `alwaysStrict` | 출력 JS 에 `"use strict"` 자동 삽입 |
+| `useUnknownInCatchVariables` | `catch (e)` 의 `e` 타입을 `any` → `unknown` |
+
+이 프로젝트의 `tsconfig.json` 에는 `strict: true` 한 줄로 위 전부가 켜지지만, `strictNullChecks` / `noImplicitAny` / `strictBindCallApply` 를 *명시적으로 반복*해 의도를 강조한 것. 그 외 `strict-*` 옵션도 모두 활성 상태다.
+
+이와 별개로 *strict 패밀리가 아닌* 안전 옵션들도 함께 사용:
+
+| 옵션 | 의미 |
+| --- | --- |
 | `noFallthroughCasesInSwitch` | switch 의 `case` 에서 `break` 누락 잡음 |
 | `forceConsistentCasingInFileNames` | macOS / Windows 의 *대소문자 비구별 파일 시스템* 함정 방지 |
 
-`strict: true` 만 켜면 5개 strict 옵션 + 몇 가지가 한 번에 켜진다. 이 프로젝트는 일부를 *명시적으로 반복*해서 의도 강조.
+출처: https://www.typescriptlang.org/tsconfig#strict
 
 ### 모듈 호환성
 

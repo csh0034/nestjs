@@ -48,7 +48,7 @@ import myConfig from './config';   // 이름 마음대로 — 위험
 - 자동 import / refactor 도구가 named export 와 더 잘 어울림
 - NestJS / TypeScript 커뮤니티 일반 권장
 
-`mikro-orm.config.ts` 만 예외 (MikroORM CLI 가 default export 를 요구).
+`mikro-orm.config.ts` 만 예외로 default export 사용 (MikroORM CLI 가 default 와 named export 모두 지원하지만, 공식 예제가 default 기준이라 그대로 따름).
 
 ### Re-export
 
@@ -134,7 +134,7 @@ barrel file 은 *전체 디렉터리를 한 번에 로드* 시키므로 순환 �
 
 ### 3. `.js` 확장자
 
-ESM 표준은 import 경로에 확장자 명시 필요. CJS 출력이면 확장자 없이도 OK. 이 프로젝트는 CJS → 확장자 생략 가능.
+**Node.js 의 ESM 로더**는 import 경로에 확장자(`.js`)를 요구한다(브라우저 ESM 은 URL 기반이라 별개 이슈). CJS 출력이면 확장자 없이도 OK. 이 프로젝트는 CJS → 확장자 생략 가능. `moduleResolution: nodenext` / `bundler` 같은 설정에서는 TS 가 요구 규칙을 달리 강제하므로 별도 참고.
 
 ---
 

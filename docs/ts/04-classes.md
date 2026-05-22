@@ -156,7 +156,12 @@ class Aggregate {
 }
 ```
 
-MikroORM 의 `hydrate` 단계에서 *생성자/필드 초기화* 가 건너뛰어진다. 항상 비어있을 거라 가정하면 hydrate 된 객체에서 NPE.
+MikroORM 은 managed entity 를 만들 때 **생성자를 호출하지 않는다**(공식: "MikroORM does not call entity constructors on managed entities"). 생성자가 안 불리면 클래스 필드 initializer 도 실행되지 않으므로 `events: Event[] = []` 는 `undefined` 가 된다.
+
+추가로 TS `target: ES2022` 부터 `useDefineForClassFields` 가 기본 `true` 로 바뀌어 클래스 필드가 `Object.defineProperty` 로 정의된다 → 이 모드에서는 부모 클래스(예: MikroORM `BaseEntity`)에서 미리 set 한 값을 자식 필드가 *다시 `undefined` 로 덮어쓰는* 함정이 추가된다. ORM/데코레이터 패턴에선 함께 인지해야 함. ([[08-tsconfig]] 참고)
+
+- MikroORM: https://mikro-orm.io/docs/entity-constructors
+- TS: https://www.typescriptlang.org/tsconfig#useDefineForClassFields
 
 해결:
 
@@ -179,12 +184,14 @@ class Aggregate {
 ```ts
 class Order extends AggregateRoot {
   constructor() {
-    super();        // 반드시 첫 줄에서 부모 생성자 호출
+    super();        // 부모 생성자 호출. this 접근 이전이면 어디든 가능
   }
 }
 ```
 
-Kotlin 과 동일. 단, JS 는 *단일 상속*만 가능 (Kotlin 도 마찬가지). 다중 상속이 필요하면 mixin 패턴 또는 interface 다중 구현.
+정확히는 **`super()` 호출 이전에 `this` 를 참조하면 ReferenceError**. "첫 줄" 강제는 아니고, `super()` 앞에 일반 표현식·인자 계산 등은 들어갈 수 있다. JS 는 *단일 상속*만 가능(Kotlin 도 마찬가지). 다중 상속이 필요하면 mixin 패턴 또는 interface 다중 구현.
+
+출처: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super
 
 ---
 

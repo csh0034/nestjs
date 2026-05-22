@@ -12,7 +12,9 @@ TypeScript 타입 시스템의 핵심: `interface` vs `type`, generic, utility t
 | 유니온/인터섹션 | ❌ (직접 못 씀) | ✅ (`A \| B`, `A & B`) |
 | 원시 별칭 | ❌ | ✅ (`type Id = string`) |
 | **선언 병합** | ✅ (같은 이름 여러 번 → 합쳐짐) | ❌ |
-| extends | `extends` | `&` (intersection) |
+| 확장 문법 | `extends` (다중 OK) | `&` (intersection), 객체형이면 `interface extends` 로도 받을 수 있음 |
+
+> `extends` / `&` 는 *결과*는 비슷하지만 의미가 살짝 다르다. `interface B extends A` 는 충돌 멤버를 **에러**로 잡고, `type B = A & { ... }` 는 **intersection 으로 합쳐버린다**(때로는 `never` 가 됨). `interface` 는 `extends A, B, C` 처럼 *여러* 객체 타입을 받을 수도 있다.
 
 ```ts
 interface User { id: string; name: string }
