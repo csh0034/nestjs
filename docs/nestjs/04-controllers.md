@@ -47,7 +47,8 @@ export class OrderController {
 
 - 기본: 메서드의 반환값이 JSON 으로 직렬화됨 (POST 는 201, 그 외는 200)
 - 상태 코드 변경: `@HttpCode(...)` 또는 응답 라이브러리(`@Res()`) 직접 다루기
-- `@Res()` 를 쓰면 Nest 의 자동 직렬화/Interceptor 가 **비활성** 된다. 가급적 피해라
+- `@Res()` 기본 동작은 Nest 의 *Standard* 응답 모드를 비활성화 — 자동 직렬화·`@HttpCode()`·Interceptor 의 응답 매핑이 무력화된다
+- 단, `@Res({ passthrough: true })` 옵션을 주면 응답 객체에 접근하면서도 Nest 의 표준 흐름(직렬화·Interceptor 연결)은 유지됨. 쿠키/헤더만 만지고 본문은 그대로 반환하고 싶을 때 쓰는 권장 패턴 ([공식](https://docs.nestjs.com/controllers#library-specific-approach))
 
 ## 컨트롤러의 역할 (이 프로젝트의 규칙)
 

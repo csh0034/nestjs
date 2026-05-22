@@ -53,7 +53,15 @@ export class DomainExceptionFilter implements ExceptionFilter {
 
 ## 등록 우선순위
 
-특정 → 일반 순으로 매칭. 예: `@Catch(NotFoundDomainException)` 가 `@Catch(DomainException)` 보다 우선.
+두 가지 우선순위가 따로 작동한다 — 헷갈리기 쉽다.
+
+**1. 타입 매칭 (같은 scope 안)**
+
+같은 scope 안에서는 `@Catch(...)` 의 예외 타입이 *더 구체적인* 필터가 먼저 매칭. 예: `@Catch(NotFoundDomainException)` 가 `@Catch(DomainException)` 보다 우선.
+
+**2. Scope 해소 순서 (route ↔ global)**
+
+NestJS 의 다른 컴포넌트는 global → controller → route 로 좁혀가지만, **Filter 만 반대**다: `route → controller → global` 순으로 매칭을 시도. route-bound filter 가 잡지 못한 예외만 controller 로, 다시 global 로 흘러간다 (공식: "filters … resolve from the lowest level possible, starting with route-bound filters and proceeding to global filters"). [출처](https://docs.nestjs.com/faq/request-lifecycle)
 
 ```ts
 // main.ts

@@ -54,14 +54,16 @@ Controller (route handler)
     ↓
 Service (호출되는 provider)
     ↓
-Interceptors (after)
+Interceptors (after) — RxJS Observable 흐름이라 first-in-last-out 으로 풀린다 (route → controller → global)
     ↓
-Exception Filter (예외가 발생했다면, route → controller → global 순으로 매칭)
+Exception Filter (예외가 발생했다면, route → controller → global 순으로 매칭 — 다른 컴포넌트와 반대 방향)
     ↓
 Server Response
 ```
 
-같은 종류 안에서는 **global → controller → route 순으로 적용 범위가 좁아진다**.
+**범위 해소 방향**:
+- Middleware / Guard / Interceptor(before) / Pipe → `global → controller → route` 로 좁혀가며 실행
+- Interceptor(after) / Exception Filter → 반대로 `route → controller → global` 로 풀림 (공식: "the only components that do not resolve global first")
 
 출처: https://docs.nestjs.com/faq/request-lifecycle
 
