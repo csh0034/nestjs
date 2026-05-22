@@ -5,11 +5,11 @@ MikroORM 이 **Hibernate 와 가장 닮은 부분**. JPA 의 `EntityManager`/1�
 ## 핵심 동작 모델
 
 1. `em.find()`/`em.findOne()` 등으로 가져온 객체는 **EM 의 Identity Map** 에 등록된다 — 같은 PK 로 다시 조회하면 동일 인스턴스
-2. 그 객체의 필드를 변경하면 EM 이 **변경을 추적**한다 (Dirty Checking)
+2. 그 객체의 필드를 변경하면 EM 이 **변경을 추적**한다 (Dirty Checking). 이미 managed 인 객체라면 `em.persist()` 를 부르지 않아도 `flush` 가 UPDATE 를 발행한다 ("code WILL update your database … even if you did not call `em.persist()`")
 3. `em.flush()` 호출 시점에 모인 변경사항이 **한 번에** SQL 로 나간다 (Unit of Work)
-4. 새 객체는 `em.persist(entity)` 로 EM 에 등록 → flush 시 INSERT
+4. *새* 객체(IdentityMap 에 없는 인스턴스)만 `em.persist(entity)` 로 EM 에 등록 → flush 시 INSERT
 
-JPA 의 `EntityManager.persist/merge/flush` 와 거의 동일.
+JPA 의 `EntityManager.persist/merge/flush` 와 거의 동일. 출처: https://mikro-orm.io/docs/unit-of-work
 
 ## 기본 API
 
@@ -25,6 +25,8 @@ await em.flush();                                       // INSERT
 // 또는 합치기
 await em.persistAndFlush(newUser);
 ```
+
+> **v6 vs v7**: `em.persistAndFlush()` / `em.removeAndFlush()` 는 v6 까지 정상 API. v7 에서 제거 예정이므로 새 코드는 `em.persist(...)` + `em.flush()` 로 분리해 두는 편이 마이그레이션이 쉽다. ([upgrading-v6-to-v7](https://mikro-orm.io/docs/upgrading-v6-to-v7))
 
 이 프로젝트 `UserMikroOrmRepository`:
 

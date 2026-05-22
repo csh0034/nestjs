@@ -52,10 +52,14 @@ for (const item of order.items.getItems()) { ... }
 | --- | --- |
 | `Cascade.PERSIST` | `CascadeType.PERSIST` |
 | `Cascade.REMOVE` | `CascadeType.REMOVE` |
-| `Cascade.MERGE` | `CascadeType.MERGE` |
 | `Cascade.ALL` | `CascadeType.ALL` |
+| (대응 없음) | `CascadeType.MERGE`, `CascadeType.REFRESH`, `CascadeType.DETACH` |
+
+MikroORM v6 `Cascade` enum 에는 `PERSIST` / `REMOVE` / `ALL` 만 있다. dirty checking 모델 자체가 JPA 의 `merge` 개념을 거의 쓰지 않으므로 대응이 비어있는 게 정상.
 
 부모를 `persist` 하면 자식도 자동 INSERT. orphanRemoval 켜면 컬렉션에서 빠진 자식은 DELETE.
+
+출처: https://mikro-orm.io/docs/cascading
 
 ## populate (N+1 회피)
 
@@ -72,7 +76,7 @@ em.findOne(Order, { id }, { populate: ['items', 'items.product'] });
 order!: Rel<Order>;
 ```
 
-`Rel<T>` 는 *circular import 회피용 헬퍼 타입*. 양방향 관계에서 `Order ↔ OrderItem` 이 서로 import 하면 컴파일 순환이 생길 수 있는데, `Rel<T>` 는 타입만 표현하고 런타임 import 영향을 줄인다.
+`Rel<T>` 의 본 목적은 MikroORM 의 **strict relation 타입**(`Reference<T>` 같은 wrapping)이 적용된 환경에서도 *바닐라 객체처럼* `order.id` 로 접근할 수 있게 호환 타입을 만들어 주는 것. 부수효과로 양방향 관계의 *타입 순환 import* 도 완화된다. 출처: https://mikro-orm.io/docs/type-safe-relations
 
 ## Owning vs Inverse Side
 

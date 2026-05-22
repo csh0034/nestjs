@@ -113,15 +113,30 @@ class LibraryService {
 | rollback rules | 예외 클래스 지정 가능 | 모든 throw 가 rollback (커스텀하려면 try/catch) |
 | 메커니즘 | Spring AOP 프록시 | 데코레이터가 메서드를 `em.transactional()` 호출로 wrap |
 
-## Nested Transaction (SAVEPOINT)
+## Nested Transaction (중첩 시 동작이 다르다)
+
+두 API 의 **기본 propagation 이 다르다** — 같은 상황에서 다르게 동작하므로 의도적으로 골라야 한다.
+
+| API | 기본 propagation | 중첩 시 동작 |
+| --- | --- | --- |
+| `em.transactional()` | (블록 단위, propagation 개념 없음) | 바깥쪽 트랜잭션 안에서 내부 호출은 **SAVEPOINT** 가 만들어진다 |
+| `@Transactional()` | `REQUIRED` | 이미 트랜잭션이 있으면 **같은 트랜잭션에 합류**, 없으면 새로 시작 |
 
 ```ts
+// em.transactional() 중첩 — 안쪽이 SAVEPOINT 가 됨
 await em.transactional(async () => {
   await em.transactional(async () => { /* SAVEPOINT */ });
 });
+
+// @Transactional() 중첩 — REQUIRED 기본이라 합류 (안쪽 rollback 이 바깥도 rollback)
+@Transactional()
+async outer() { await this.inner(); }
+
+@Transactional()
+async inner() { throw new Error(); }   // outer 도 전부 rollback
 ```
 
-`@Transactional()` 끼리 중첩되어도 REQUIRED 면 같은 트랜잭션에 합류. 진짜 새로운 중첩 트랜잭션이 필요하면 다른 propagation 옵션 사용 (공식 docs 확인 권장).
+진짜 새로운 중첩 트랜잭션이 필요하면 `propagation` 옵션을 명시 (공식 docs 의 `TransactionPropagation` 참고). 출처: https://mikro-orm.io/docs/transactions
 
 ## 안티패턴
 

@@ -62,7 +62,7 @@ export class Foo {
 }
 ```
 
-MikroORM 은 **객체를 DB 에서 hydrate 할 때 `Object.create()` 같은 방식**으로 인스턴스를 만든다. 결과적으로 *클래스 field initializer 가 실행되지 않을 수 있다*. 이 프로젝트도 `AggregateRoot` 에서 이 문제를 겪어 lazy initialize 로 바꿨다:
+공식 문서가 명시한다 — **"MikroORM does not call entity constructors on managed entities"**. 생성자가 호출되지 않으니 *클래스 field initializer 도 실행되지 않는다*. 이 프로젝트도 `AggregateRoot` 에서 이 문제를 겪어 lazy initialize 로 바꿨다:
 
 ```ts
 export abstract class AggregateRoot {
@@ -75,7 +75,9 @@ export abstract class AggregateRoot {
 }
 ```
 
-JPA 도 비슷한 함정이 있지만 (final field 초기화), MikroORM 은 *훨씬 자주* 만난다.
+JPA 도 비슷한 함정이 있지만 (final field 초기화), MikroORM 은 *훨씬 자주* 만난다. TS `target: ES2022` 부터 `useDefineForClassFields` 가 기본 `true` 가 되어 필드가 `Object.defineProperty` 로 정의되는 점이 함정을 한 겹 더 얹는다 ([[../ts/04-classes]] 참고).
+
+출처: https://mikro-orm.io/docs/entity-constructors
 
 ## 도메인 분리 vs 데코레이터 함께 두기
 
